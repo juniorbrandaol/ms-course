@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import com.eblj.hrpayroll.entities.Worker;
 
 @Component
-@FeignClient(name="hr-worker",url="localhost:8001",path="/workes")
+@FeignClient(name="hr-worker",path="/workes")
 public interface WorkerFeignClient {
 	
 	@GetMapping(value="/{id}")
