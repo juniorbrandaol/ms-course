@@ -25,8 +25,8 @@ public class WorkerController {
 	
 	private static Logger logger =  LoggerFactory.getLogger(WorkerController.class);
 	
-	@Value("${test.config}")
-	private String testeConfig;
+//	@Value("${test.config}")
+  //  private String testeConfig;
 	
 	@Autowired  
 	private Environment env; // traz informações de todo o contexto da aplicação
@@ -37,7 +37,8 @@ public class WorkerController {
 	@GetMapping(value="/configs")
 	@ResponseStatus(value = HttpStatus.OK)
 	public void getConfigs(){
-		logger.info("Config= "+testeConfig);
+	//	logger.info("Config= "+testeConfig);
+		logger.info("Port = " + env.getProperty("local.server.port"));
 	}
 	
 	
