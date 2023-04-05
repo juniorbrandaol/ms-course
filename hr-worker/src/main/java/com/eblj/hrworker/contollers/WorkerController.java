@@ -2,11 +2,11 @@ package com.eblj.hrworker.contollers;
 
 import java.util.List;
 
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.eblj.hrworker.entities.Worker;
 import com.eblj.hrworker.services.WorkerService;
 
+@RefreshScope
 @RestController
 @RequestMapping(value="/workes")
 public class WorkerController {
