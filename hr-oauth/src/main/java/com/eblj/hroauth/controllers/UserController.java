@@ -1,4 +1,4 @@
-package com.eblj.hruser.controllers;
+package com.eblj.hroauth.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,26 +8,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.eblj.hruser.entities.User;
-import com.eblj.hruser.services.UserService;
+import com.eblj.hroauth.entities.User;
+import com.eblj.hroauth.services.UserService;
 
 @RestController
 @RequestMapping(value="/users")
 public class UserController {
 	
-    @Autowired
-	private UserService service;
-	
-	@GetMapping(value="/{id}")
-	@ResponseStatus(value = HttpStatus.OK)
-	public User findById( @PathVariable Long id){
-		return service.findById(id);
-	}
+	@Autowired
+	UserService userService;
 	
 	@GetMapping(value="/email/{email}")
 	@ResponseStatus(value = HttpStatus.OK)
-	public User findByEmail( @PathVariable String email){
-		return service.findByEmail(email);
+	public User findByEmail(@PathVariable String email) {
+		try {
+			User user =  userService.findByEmail(email);
+			return user;
+		}catch(IllegalArgumentException e) {
+			return null; 
+		}
+	
 	}
+	
+	
 
 }
