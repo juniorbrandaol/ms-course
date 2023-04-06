@@ -20,8 +20,7 @@ public class HrUserApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		System.out.println("Decripted: "+ passwordEncoder.encode("1224"));
-		
+		//System.out.println("Decripted: "+ passwordEncoder.encode("1224"));		
 	}
 
 }

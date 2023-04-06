@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -24,11 +25,15 @@ public class User implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	private String name;
+	@Column(unique = true)
+	
 	private String email;
+	
 	private String password;
 	
-	@ManyToMany(fetch = FetchType.EAGER)// carrega todos os dados da entidade junto
+	@ManyToMany(fetch = FetchType.LAZY)// carrega todos os dados da entidade junto
 	@JoinTable(
 			  name="tb_user_role",
 			  joinColumns= @JoinColumn(name="user_id"),
@@ -82,6 +87,10 @@ public class User implements Serializable{
 		this.roles = roles;
 	}
 	
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
